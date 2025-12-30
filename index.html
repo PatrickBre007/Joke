@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sito Assolutamente Affidabile</title>
+    <style>
+        /* Reset di base e stile del corpo */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Courier New', Courier, monospace; /* Font un po' "hacker" */
+            background-color: #111; /* Sfondo scuro iniziale */
+            color: #eee;
+            overflow: hidden; /* Evita le barre di scorrimento durante il glitch */
+        }
+
+        /* --- STADIO 1: IL PULSANTE INIZIALE --- */
+        #initial-stage {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #ff3333;
+            text-shadow: 0 0 10px rgba(255, 51, 51, 0.7);
+        }
+
+        #trust-btn {
+            padding: 20px 40px;
+            font-size: 24px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+            transition: transform 0.1s, background-color 0.3s;
+            font-weight: bold;
+        }
+
+        #trust-btn:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        #trust-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* --- STADIO 2: L'EFFETTO "MALWARE/GLITCH" --- */
+        #glitch-stage {
+            display: none; /* Nascosto inizialmente */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            /* Animazione dello sfondo che lampeggia */
+            animation: bg-flash 0.1s infinite;
+        }
+
+        @keyframes bg-flash {
+            0% { background-color: red; }
+            25% { background-color: blue; }
+            50% { background-color: black; }
+            75% { background-color: green; }
+            100% { background-color: red; }
+        }
+
+        .glitch-text {
+            font-size: 5em;
+            font-weight: bold;
+            text-transform: uppercase;
+            position: relative;
+            text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff,
+                         0.025em 0.04em 0 #fffc00;
+            animation: glitch 725ms infinite;
+        }
+        
+        .glitch-subtext {
+             font-size: 1.5em;
+             color: yellow;
+             margin-top: 20px;
+             animation: shake 0.5s infinite;
+        }
+
+        /* Animazione CSS complessa per l'effetto testo rotto */
+        @keyframes glitch {
+            0% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff, 0.025em 0.04em 0 #fffc00; }
+            15% { text-shadow: 0.05em 0 0 #00fffc, -0.03em -0.04em 0 #fc00ff, 0.025em 0.04em 0 #fffc00; }
+            16% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+            49% { text-shadow: -0.05em -0.025em 0 #00fffc, 0.025em 0.035em 0 #fc00ff, -0.05em -0.05em 0 #fffc00; }
+            50% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff, 0 -0.04em 0 #fffc00; }
+            99% { text-shadow: 0.05em 0.035em 0 #00fffc, 0.03em 0 0 #fc00ff, 0 -0.04em 0 #fffc00; }
+            100% { text-shadow: -0.05em 0 0 #00fffc, -0.025em -0.04em 0 #fc00ff, -0.04em -0.025em 0 #fffc00; }
+        }
+        
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+
+        /* --- STADIO 3: IL VIDEO FINALE --- */
+        #video-stage {
+            display: none; /* Nascosto inizialmente */
+            height: 100vh;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            /* Sfondo animato con gradienti e movimento */
+            background: linear-gradient(270deg, #ff00cc, #3333ff, #00ff99, #ffcc00);
+            background-size: 800% 800%;
+            animation: gradientMove 8s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {background-position:0% 50%}
+            50% {background-position:100% 50%}
+            100% {background-position:0% 50%}
+        }
+        
+        
+        #video-stage h2 {
+            font-family: 'Comic Sans MS', cursive, sans-serif; /* Font volutamente brutto/divertente */
+            color: #d63384;
+        }
+
+        .video-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            box-shadow: none;
+            border: none;
+            border-radius: 0;
+            overflow: visible;
+        }
+
+        .video-container iframe {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="initial-stage">
+        <h1>Sei pronto per la verità?</h1>
+        <p style="margin-bottom: 20px; color: #aaa;">Clicca qui sotto per accedere ai file segreti.</p>
+        <button id="trust-btn">TRUST ME</button>
+    </div>
+
+    <div id="glitch-stage" style="display: none;">
+        <div class="glitch-text">ERRORE FATALE</div>
+        <div class="glitch-text">SISTEMA COMPROMESSO</div>
+        <div class="glitch-subtext" id="virus-progress">Caricamento virus in corso... 0%</div>
+    </div>
+
+    <div id="video-stage" style="display: none;">
+        <h2>I segreti sono stati svelati!</h2>
+        <audio id="segreti-audio" src="Toothless.mp3" autoplay loop></audio>
+        <div class="video-container">
+            <img src="toothless-toothless-dancing-meme-gif.gif" alt="strano" id="main-gif" style="width:65vw; max-width:1200px; height:auto; max-height:90vh; display:block; margin:auto; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2;" />
+            <div id="floating-gifs"></div>
+        </div>
+        <style>
+            .floating-gif {
+                position: absolute;
+                width: 80px;
+                height: 80px;
+                opacity: 0.33;
+                pointer-events: none;
+                z-index: 1;
+                transition: transform 1s linear;
+            }
+            @media (max-width: 600px) {
+                #main-gif {
+                    width: 95vw !important;
+                    max-width: 99vw !important;
+                }
+                .floating-gif {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        </style>
+    </div>
+
+
+    <script>
+        // Selezioniamo gli elementi dal DOM (la struttura della pagina)
+        const trustBtn = document.getElementById('trust-btn');
+        const initialStage = document.getElementById('initial-stage');
+        const glitchStage = document.getElementById('glitch-stage');
+        const videoStage = document.getElementById('video-stage');
+        // Non serve più gestire videoSrc o finalVideoIframe, ora c'è una gif
+
+
+        // Aggiungiamo l'ascoltatore dell'evento "click" al pulsante
+        trustBtn.addEventListener('click', function() {
+            
+            // 1. Nascondi lo stadio iniziale
+            initialStage.style.display = 'none';
+
+            // 2. Mostra lo stadio del glitch
+            glitchStage.style.display = 'flex';
+
+            // Animazione procedurale del caricamento
+            const progressText = document.getElementById('virus-progress');
+            let percent = 0;
+            const duration = 4000; // 4 secondi
+            const interval = 40; // ms
+            const step = 100 / (duration / interval);
+            const timer = setInterval(function() {
+                percent += step;
+                if (percent > 100) percent = 100;
+                progressText.textContent = `Caricamento virus in corso... ${Math.floor(percent)}%`;
+                if (percent >= 100) {
+                    clearInterval(timer);
+                }
+            }, interval);
+
+            // Dopo 4 secondi passa allo stadio gif
+            setTimeout(function() {
+                glitchStage.style.display = 'none';
+                videoStage.style.display = 'flex';
+                document.body.style.backgroundColor = "#222";
+                document.body.style.overflow = "auto";
+                startFloatingGifs();
+                // Avvia la canzone
+                const audio = document.getElementById('segreti-audio');
+                if (audio) {
+                    audio.play().catch(()=>{});
+                }
+                    // Gif piccole che si muovono in modo fluido e con dimensioni diverse
+                    function startFloatingGifs() {
+                        const floatingContainer = document.getElementById('floating-gifs');
+                        const gifSrc = 'toothless-toothless-dancing-meme-gif.gif';
+                        const numGifs = 10;
+                        const gifs = [];
+                        for (let i = 0; i < numGifs; i++) {
+                            const img = document.createElement('img');
+                            img.src = gifSrc;
+                            img.className = 'floating-gif';
+                            // Dimensioni random tra 40px e 120px
+                            const size = Math.floor(Math.random() * 80) + 40;
+                            img.style.width = size + 'px';
+                            img.style.height = size + 'px';
+                            // Posizione iniziale random
+                            img._x = Math.random() * 90;
+                            img._y = Math.random() * 90;
+                            img.style.left = img._x + 'vw';
+                            img.style.top = img._y + 'vh';
+                            // Direzione random
+                            img._dx = (Math.random() - 0.5) * 0.7;
+                            img._dy = (Math.random() - 0.5) * 0.7;
+                            floatingContainer.appendChild(img);
+                            gifs.push(img);
+                        }
+                        // Animazione fluida
+                        function animate() {
+                            gifs.forEach(img => {
+                                img._x += img._dx;
+                                img._y += img._dy;
+                                // Rimbalzo ai bordi
+                                if (img._x < 0 || img._x > 95) img._dx *= -1;
+                                if (img._y < 0 || img._y > 95) img._dy *= -1;
+                                img.style.left = img._x + 'vw';
+                                img.style.top = img._y + 'vh';
+                            });
+                            requestAnimationFrame(animate);
+                        }
+                        animate();
+                    }
+            }, duration);
+        });
+    </script>
+
+</body>
+</html>
