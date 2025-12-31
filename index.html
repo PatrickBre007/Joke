@@ -182,7 +182,7 @@
 
     <div id="video-stage" style="display: none;">
         <h2>I segreti sono stati svelati!</h2>
-        <audio id="segreti-audio" src="Toothless.mp3" autoplay loop></audio>
+        <audio id="segreti-audio" src="Toothless.mp3" loop></audio>
         <div class="video-container">
             <img src="toothless-toothless-dancing-meme-gif.gif" alt="strano" id="main-gif" style="width:65vw; max-width:1200px; height:auto; max-height:90vh; display:block; margin:auto; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:2;" />
             <div id="floating-gifs"></div>
@@ -251,10 +251,12 @@
                 document.body.style.backgroundColor = "#222";
                 document.body.style.overflow = "auto";
                 startFloatingGifs();
-                // Avvia la canzone
+                // Avvia la canzone SOLO ora
                 const audio = document.getElementById('segreti-audio');
                 if (audio) {
-                    audio.play().catch(()=>{});
+                    setTimeout(() => {
+                        audio.play().catch(()=>{});
+                    }, 200); // leggero delay per sicurezza
                 }
                     // Gif piccole che si muovono in modo fluido e con dimensioni diverse
                     function startFloatingGifs() {
